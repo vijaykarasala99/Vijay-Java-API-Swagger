@@ -1,0 +1,46 @@
+-- ================================
+-- DATABASE SELECTION
+-- ================================
+SHOW DATABASES;
+
+USE aaa;
+
+-- ================================
+-- TABLE VERIFICATION
+-- ================================
+SHOW TABLES;
+
+SELECT * FROM roles;
+SELECT * FROM users;
+SELECT * FROM user_roles;
+
+-- ================================
+-- INDEX CHECK
+-- ================================
+SHOW INDEX FROM users;
+
+-- Verify index usage
+EXPLAIN SELECT * FROM users WHERE email = 'vijay@example.com';
+
+-- ================================
+-- STORED PROCEDURE CHECK
+-- ================================
+SHOW PROCEDURE STATUS WHERE Db = 'aaa';
+
+-- ================================
+-- CREATE STORED PROCEDURE
+-- ================================
+DELIMITER $$
+
+CREATE PROCEDURE get_user_by_email(IN email_param VARCHAR(255))
+BEGIN
+    SELECT * FROM users WHERE email = email_param;
+END $$
+
+DELIMITER ;
+
+-- ================================
+-- TEST STORED PROCEDURE
+-- ================================
+CALL get_user_by_email('jay@example.com');
+

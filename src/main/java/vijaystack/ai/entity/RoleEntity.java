@@ -2,6 +2,8 @@ package vijaystack.ai.entity;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,5 +29,6 @@ public class RoleEntity {
 
     // Reverse mapping (optional but useful)
     @ManyToMany(mappedBy = "roles")
+    @JsonBackReference
     private Set<VijayEntity> users;
 }

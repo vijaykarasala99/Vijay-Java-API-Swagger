@@ -6,6 +6,8 @@ import java.util.Set;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -62,6 +64,7 @@ public class VijayEntity {
 
 	// ROLE MANAGEMENT
 	@ManyToMany(fetch = FetchType.LAZY)
+	@JsonManagedReference
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<RoleEntity> roles;
 

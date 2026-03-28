@@ -7,6 +7,8 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import vijaystack.ai.entity.VijayEntity;
 import vijaystack.ai.service.VijayService;
@@ -16,35 +18,37 @@ import vijaystack.ai.service.VijayService;
 @RequiredArgsConstructor
 public class VijayController {
 
-    private final VijayService service;
+	private final VijayService service;
 
-    @PostMapping(REGISTER)
-    public ResponseEntity<VijayEntity> registerUser(@RequestBody VijayEntity user) {
-        return ResponseEntity.ok(service.registerUser(user));
-    }
+	@Operation(summary = "Register User", description = "Creates a new user")
+	@Tag(name = "User APIs", description = "Operations related to user management")
+	@PostMapping(REGISTER)
+	public ResponseEntity<VijayEntity> registerUser(@RequestBody VijayEntity user) {
+		return ResponseEntity.ok(service.registerUser(user));
+	}
 
-    @GetMapping(EMAIL)
-    public ResponseEntity<Optional<VijayEntity>> getUserByEmail(@RequestParam String email) {
-        return ResponseEntity.ok(service.getUserByEmail(email));
-    }
+	@GetMapping(EMAIL)
+	public ResponseEntity<Optional<VijayEntity>> getUserByEmail(@RequestParam String email) {
+		return ResponseEntity.ok(service.getUserByEmail(email));
+	}
 
-    @GetMapping(JPQL)
-    public ResponseEntity<Optional<VijayEntity>> getUserUsingJPQL(@RequestParam String email) {
-        return ResponseEntity.ok(service.getUserUsingJPQL(email));
-    }
+	@GetMapping(JPQL)
+	public ResponseEntity<Optional<VijayEntity>> getUserUsingJPQL(@RequestParam String email) {
+		return ResponseEntity.ok(service.getUserUsingJPQL(email));
+	}
 
-    @GetMapping(NATIVE)
-    public ResponseEntity<Optional<VijayEntity>> getUserUsingNative(@RequestParam String email) {
-        return ResponseEntity.ok(service.getUserUsingNative(email));
-    }
+	@GetMapping(NATIVE)
+	public ResponseEntity<Optional<VijayEntity>> getUserUsingNative(@RequestParam String email) {
+		return ResponseEntity.ok(service.getUserUsingNative(email));
+	}
 
-    @PutMapping(VERIFY)
-    public ResponseEntity<String> verifyEmail(@RequestParam String email) {
-        return ResponseEntity.ok(service.verifyUserEmail(email));
-    }
+	@PutMapping(VERIFY)
+	public ResponseEntity<String> verifyEmail(@RequestParam String email) {
+		return ResponseEntity.ok(service.verifyUserEmail(email));
+	}
 
-    @GetMapping(PROCEDURE)
-    public ResponseEntity<VijayEntity> getUserUsingProcedure(@RequestParam String email) {
-        return ResponseEntity.ok(service.getUserUsingProcedure(email));
-    }
+	@GetMapping(PROCEDURE)
+	public ResponseEntity<VijayEntity> getUserUsingProcedure(@RequestParam String email) {
+		return ResponseEntity.ok(service.getUserUsingProcedure(email));
+	}
 }
